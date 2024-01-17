@@ -6,6 +6,6 @@ Include [csi.js](https://github.com/jasoncartwright/clientsideinclude/blob/main/
 
 <code><script src="csi.js" defer></script></code>
 
-Add the <code>data-csi</code> attribute to any HTML to have it filled with the HTML returned by the URL...
+Add the <code>data-csi</code> attribute to any element to have it filled with the HTML returned by the URL...
 
 <code>&lt;p data-csi=&quot;/path/to/more/html/&quot;&gt;&lt;/p&gt;</code>
