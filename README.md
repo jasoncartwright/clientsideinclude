@@ -15,6 +15,6 @@ On https://www.givefood.org.uk the page is cached for up to hours, but contains.
 
 <code><script src="csi.js" defer></script></code>
 
-<code>&lt;p data-include=&quot;/frag/lastupdated/&quot;&gt;&lt;/p&gt;</code>
+<code>&lt;p data-include=&quot;/frag/last_updated/&quot;&gt;&lt;/p&gt;</code>
 
-The URL /frag/lastupdated/ isn't cached and returns HTML that changes up to every minute.
+The URL /frag/last_updated/ isn't cached and returns HTML that changes up to every minute.
