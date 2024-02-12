@@ -11,10 +11,6 @@ Put a URL in the <code>data-include</code> attribute to any element to have it f
 <code>&lt;p data-include=&quot;/path/to/more/content.html&quot;&gt;&lt;/p&gt;</code>
 
 ## Example
-On https://www.givefood.org.uk the page is cached for up to hours, but contains...
+Code: https://github.com/jasoncartwright/clientsideinclude/blob/main/example.html
 
-<code><script src="csi.js" defer></script></code>
-
-<code>&lt;p data-include=&quot;/frag/last_updated/&quot;&gt;&lt;/p&gt;</code>
-
-The URL /frag/last_updated/ isn't cached and returns HTML that changes up to every minute.
+Preview: https://htmlpreview.github.io/?https://github.com/jasoncartwright/clientsideinclude/blob/main/example.html
