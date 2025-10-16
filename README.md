@@ -10,6 +10,10 @@ Put a URL in the <code>data-include</code> attribute to any element to have it f
 
 <code>&lt;p data-include=&quot;/path/to/more/content.html&quot;&gt;&lt;/p&gt;</code>
 
+You can also add <code>data-update</code> containing the number of seconds that the include should be reloaded.
+
+<code>&lt;p data-include=&quot;/path/to/some/livecontent.html&quot; data-update=&quot;60&quot;&gt;&lt;/p&gt;</code>
+
 ## Example
 Code: https://github.com/jasoncartwright/clientsideinclude/blob/main/example.html
 
