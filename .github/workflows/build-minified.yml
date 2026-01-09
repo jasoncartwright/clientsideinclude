@@ -8,9 +8,15 @@ name: Build Minified JS
       - master
     paths:
       - 'csi.js'
+      - 'package.json'
   pull_request:
     paths:
       - 'csi.js'
+      - 'package.json'
+
+concurrency:
+  group: build-minified-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -29,7 +35,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build minified file
         run: npm run minify

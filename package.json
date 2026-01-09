@@ -15,7 +15,6 @@
     "html",
     "client-side"
   ],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "terser": "^5.27.0"
