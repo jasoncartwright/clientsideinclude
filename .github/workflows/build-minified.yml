@@ -40,29 +40,21 @@ jobs:
       - name: Build minified file
         run: npm run minify
 
-      - name: Check for changes
-        id: git-check
-        run: |
-          git diff --exit-code csi.min.js || \
-            echo "changed=true" >> $GITHUB_OUTPUT
-
-      - name: Commit and push if changed (push events only)
-        if: |
-          steps.git-check.outputs.changed == 'true' &&
-          github.event_name == 'push'
+      - name: Commit and push minified file (push events only)
+        if: github.event_name == 'push'
         run: |
           git config --local user.email \
             "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add csi.min.js
-          git commit -m "Auto-build: Update csi.min.js"
+          git diff --cached --quiet || git commit -m "Auto-build: Update csi.min.js"
           git push
 
       - name: Check minified file is up to date (PR events)
-        if: |
-          steps.git-check.outputs.changed == 'true' &&
-          github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request'
         run: |
-          echo "::error::csi.min.js is out of date." \
-            "Please run 'npm run minify' locally and commit the changes."
-          exit 1
+          if ! git diff --exit-code csi.min.js; then
+            echo "::error::csi.min.js is out of date." \
+              "Please run 'npm run minify' locally and commit the changes."
+            exit 1
+          fi
