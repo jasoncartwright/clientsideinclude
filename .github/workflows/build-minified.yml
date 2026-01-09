@@ -1,6 +1,7 @@
+---
 name: Build Minified JS
 
-on:
+'on':
   push:
     branches:
       - main
@@ -14,37 +15,39 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     permissions:
       contents: write
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
       - name: Install dependencies
         run: npm install
-      
+
       - name: Build minified file
         run: npm run minify
-      
+
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code csi.min.js || echo "changed=true" >> $GITHUB_OUTPUT
-      
+          git diff --exit-code csi.min.js || \
+            echo "changed=true" >> $GITHUB_OUTPUT
+
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed == 'true'
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email \
+            "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add csi.min.js
           git commit -m "Auto-build: Update csi.min.js"
