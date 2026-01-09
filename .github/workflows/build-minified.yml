@@ -63,6 +63,6 @@ jobs:
           steps.git-check.outputs.changed == 'true' &&
           github.event_name == 'pull_request'
         run: |
-          echo "::error::csi.min.js is out of date. \
-            Please run 'npm run minify' locally and commit the changes."
+          echo "::error::csi.min.js is out of date." \
+            "Please run 'npm run minify' locally and commit the changes."
           exit 1
