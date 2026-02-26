@@ -2,11 +2,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll("*[data-include]").forEach((element) => {
         const url = element.getAttribute("data-include");
         const updateInterval = element.getAttribute("data-update");
+        const stopWhen = element.getAttribute("data-stop-when");
+        let intervalId;
         
         const loadContent = () => {
             fetch(url).then((response) => {
                 response.text().then((text) => {
                     element.innerHTML = text;
+                    if (stopWhen !== null && text.trim() === stopWhen && intervalId !== undefined) {
+                        clearInterval(intervalId);
+                    }
                 });
             });
         };
@@ -18,7 +23,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         if (updateInterval) {
             const intervalSeconds = parseInt(updateInterval, 10);
             if (!isNaN(intervalSeconds) && intervalSeconds > 0) {
-                setInterval(loadContent, intervalSeconds * 1000);
+                intervalId = setInterval(loadContent, intervalSeconds * 1000);
             }
         }
     });
