@@ -14,6 +14,10 @@ You can also add <code>data-update</code> containing the number of seconds that 
 
 <code>&lt;p data-include=&quot;/path/to/some/livecontent.html&quot; data-update=&quot;60&quot;&gt;&lt;/p&gt;</code>
 
+You can also add <code>data-stop-when</code> to stop the <code>data-update</code> polling when the trimmed included content equals the specified value (the fetched response text is trimmed before comparison, so leading and trailing whitespace in the response is ignored).
+
+<code>&lt;p data-include=&quot;/path/to/some/livecontent.html&quot; data-update=&quot;60&quot; data-stop-when=&quot;0&quot;&gt;&lt;/p&gt;</code>
+
 ## Example
 Code: https://github.com/jasoncartwright/clientsideinclude/blob/main/example.html
 
